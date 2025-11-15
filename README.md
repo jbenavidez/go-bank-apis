@@ -1,4 +1,4 @@
-# Bank accounts management system APIS (wip):
+# Bank accounts management system APIs (wip):
 
 The following APIs can be use to implement a banking system on which admins are able to create customer, create accounts(checking|saving), and customer are able to deposit or withdraw X amount of money
 
