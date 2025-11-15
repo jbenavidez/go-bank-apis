@@ -104,7 +104,6 @@ func (app *application) UpdateCustomer(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Println(userID)
-	fmt.Println("the payload", user)
 
 	resp := JSONResponse{
 		Error:   false,
