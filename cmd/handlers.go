@@ -92,7 +92,7 @@ func (app *application) UpdateCustomer(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// get customer record
-	user, err := app.DB.Getuser(userID)
+	_, err = app.DB.Getuser(userID)
 	if err != nil {
 		app.errorJSON(w, err)
 		return
