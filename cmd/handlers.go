@@ -4,6 +4,9 @@ import (
 	"banks/models"
 	"fmt"
 	"net/http"
+	"strconv"
+
+	"github.com/go-chi/chi/v5"
 )
 
 type Payload struct {
@@ -49,8 +52,26 @@ func (app *application) AllCustomers(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println("customer list retrieved")
+	fmt.Println("customers list retrieved")
 
 	_ = app.writeJSON(w, http.StatusOK, customerList)
 
+}
+
+// GetCustomer get customer details
+func (app *application) GetCustomer(w http.ResponseWriter, r *http.Request) {
+
+	userID, err := strconv.Atoi(chi.URLParam(r, "id"))
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	c, err := app.DB.Getuser(userID)
+
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	//return customer
+	_ = app.writeJSON(w, http.StatusOK, c)
 }

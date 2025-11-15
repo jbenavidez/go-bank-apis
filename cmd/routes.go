@@ -13,5 +13,6 @@ func (a *application) routes() http.Handler {
 	mux.Get("/welcome", a.Welcome)
 	mux.Post("/create-customer", a.CreateUser)
 	mux.Get("/customers", a.AllCustomers)
+	mux.Get("/customers/{id}", a.GetCustomer)
 	return mux
 }
