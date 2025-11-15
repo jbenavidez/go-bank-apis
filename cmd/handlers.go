@@ -39,3 +39,18 @@ func (app *application) CreateUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("user_id ", userID)
 
 }
+
+// AllCustomers  get all customer
+func (app *application) AllCustomers(w http.ResponseWriter, r *http.Request) {
+
+	// Get customers
+	customerList, err := app.DB.AllCustomers()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("customer list retrieved")
+
+	_ = app.writeJSON(w, http.StatusOK, customerList)
+
+}
