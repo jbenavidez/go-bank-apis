@@ -1,8 +1,12 @@
-# go-bank-apis(WIP)
+# Bank accounts management system APIS (wip):
 
+The following APIs can be use to implement a banking system on which admins are able to create customer, create accounts(checking|saving), and customer are able to deposit or withdraw X amount of money
 
-APIS set that allow users to create customers and accounts
-
+# Stack
+<ul>
+<li>Go</li>
+<li>PostgreSQL </li>
+</ul>
 
 # Customers APIs
 <ul>
