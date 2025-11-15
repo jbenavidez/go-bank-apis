@@ -12,14 +12,9 @@ import (
 const port = 8080
 
 type application struct {
-	DSN          string
-	Domain       string
-	DB           repository.DatabaseRepo
-	JWTSecret    string
-	JWTIssuer    string
-	JWTAudince   string
-	CookieDomain string
-	APIKEY       string
+	DSN string
+
+	DB repository.DatabaseRepo
 }
 
 func main() {
