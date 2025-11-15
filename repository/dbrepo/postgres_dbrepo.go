@@ -136,3 +136,34 @@ func (m *PostgresDBRepo) UpdateUser(userID int, userObj models.User) error {
 	return nil
 
 }
+
+func (m *PostgresDBRepo) InsertAccount(account models.Account) (int, error) {
+
+	ctx, cancel := context.WithTimeout(context.Background(), dbTimeout)
+	defer cancel()
+	stmt := `
+		insert into Accounts
+			(acc_type, amount, user_id, created_at, updated_at)
+		values	
+			($1,$2,$3,$4,$5) 
+		returning id
+	`
+
+	var newID int
+
+	err := m.DB.QueryRowContext(ctx, stmt,
+		account.AccountType,
+		account.Amount,
+		account.UserID,
+		account.CreatedAt,
+		account.UpdatedAt,
+	).Scan(&newID)
+
+	if err != nil {
+		fmt.Println("err creating account", err)
+		return 0, err
+	}
+	fmt.Println("account was created", newID)
+	return newID, nil
+
+}

@@ -2,9 +2,12 @@ package main
 
 import (
 	"banks/models"
+	"errors"
 	"fmt"
 	"net/http"
 	"strconv"
+	"strings"
+	"time"
 
 	"github.com/go-chi/chi/v5"
 )
@@ -110,4 +113,51 @@ func (app *application) UpdateCustomer(w http.ResponseWriter, r *http.Request) {
 		Message: "Customer updated",
 	}
 	_ = app.writeJSON(w, http.StatusOK, resp)
+}
+
+// CreateAccount create an account for a given user
+func (app *application) CreateAccount(w http.ResponseWriter, r *http.Request) {
+	userID, err := strconv.Atoi(chi.URLParam(r, "id"))
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	var account models.Account
+	err = app.readJSON(w, r, &account)
+
+	if err != nil {
+		fmt.Println(err)
+		app.errorJSON(w, err)
+		return
+	}
+	// check if amount is greater than 0
+	if account.Amount < 1 {
+		err := errors.New("account amount should be greater than zero")
+		app.errorJSON(w, err)
+
+	}
+
+	// validate account type
+	if strings.ToLower(account.AccountType) != "checking" && strings.ToLower(account.AccountType) != "saving" {
+		err := errors.New("invalid account type")
+		app.errorJSON(w, err)
+	}
+	account.CreatedAt = time.Now()
+	account.UpdatedAt = time.Now()
+	account.UserID = userID
+	//create account
+	_, err = app.DB.InsertAccount(account)
+	if err != nil {
+		fmt.Println(err)
+		app.errorJSON(w, err)
+		return
+	}
+	//
+
+	//return response
+	resp := JSONResponse{
+		Error:   false,
+		Message: "Account created",
+	}
+	_ = app.writeJSON(w, http.StatusAccepted, resp)
 }

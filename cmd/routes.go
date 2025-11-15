@@ -17,5 +17,6 @@ func (a *application) routes() http.Handler {
 	mux.Get("/customers/{id}", a.GetCustomer)
 	mux.Put("/customers/{id}", a.UpdateCustomer)
 	// TODO: account
+	mux.Post("/customers/{id}/account", a.CreateAccount)
 	return mux
 }
