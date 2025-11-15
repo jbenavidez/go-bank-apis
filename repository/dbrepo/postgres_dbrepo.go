@@ -111,3 +111,28 @@ func (m *PostgresDBRepo) Getuser(userID int) (*models.User, error) {
 	return &user, nil
 
 }
+
+func (m *PostgresDBRepo) UpdateUser(userID int, userObj models.User) error {
+
+	ctx, cancel := context.WithTimeout(context.Background(), dbTimeout)
+	defer cancel()
+
+	stmt := `
+		update users set first_name=$1, last_name=$2 , email = $3, username = $4  
+		where id = $5
+	`
+	_, err := m.DB.ExecContext(ctx, stmt,
+		userObj.FirstName,
+		userObj.LastName,
+		userObj.Email,
+		userObj.Username,
+		userID,
+	)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	return nil
+
+}

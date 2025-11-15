@@ -75,3 +75,40 @@ func (app *application) GetCustomer(w http.ResponseWriter, r *http.Request) {
 	//return customer
 	_ = app.writeJSON(w, http.StatusOK, c)
 }
+
+// UpdateCustomer update customer info
+func (app *application) UpdateCustomer(w http.ResponseWriter, r *http.Request) {
+
+	userID, err := strconv.Atoi(chi.URLParam(r, "id"))
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	// Get payload
+	var payload models.User
+	err = app.readJSON(w, r, &payload)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	// get customer record
+	user, err := app.DB.Getuser(userID)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	// update user
+	err = app.DB.UpdateUser(userID, payload)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	fmt.Println(userID)
+	fmt.Println("the payload", user)
+
+	resp := JSONResponse{
+		Error:   false,
+		Message: "Customer updated",
+	}
+	_ = app.writeJSON(w, http.StatusOK, resp)
+}

@@ -11,8 +11,11 @@ func (a *application) routes() http.Handler {
 	mux := chi.NewRouter()
 
 	mux.Get("/welcome", a.Welcome)
+	// Customer APIs
 	mux.Post("/create-customer", a.CreateUser)
 	mux.Get("/customers", a.AllCustomers)
 	mux.Get("/customers/{id}", a.GetCustomer)
+	mux.Put("/customers/{id}", a.UpdateCustomer)
+	// TODO: account
 	return mux
 }
