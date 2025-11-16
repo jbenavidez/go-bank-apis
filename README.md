@@ -34,7 +34,23 @@ The following APIs can be use to implement a banking system on which admins are 
      <li>Method: PUT</li>
      </ul>
 </li>
-
-
-
 </ul>
+
+# Account APIs
+<ul>
+<li>Get all accounts for a given account:
+    <ul>
+    <li>Endpoint: {domain-name}/customers<{id}/accounts</li>
+     <li>Method: GET</li>
+       <li>Response: List --> Account</li>
+    </ul>
+</li>
+<li>Create Account:
+    <ul>
+    <li>Endpoint: {domain-name}/customers<{id}/accounts</li>
+     <li>Method: Post</li>
+    </ul>
+</li>
+</ul>
+
+# Transaction API
