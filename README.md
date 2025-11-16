@@ -167,7 +167,7 @@ $ go run cmd/api/*
   ```json
     {
       "transaction_type": "withdraw || deposit",
-      "age": "number",
+      "amount": "number",
       
     }
 ```
