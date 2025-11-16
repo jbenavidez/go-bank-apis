@@ -78,6 +78,29 @@ The following APIs can be used to implement a banking system on which admins can
     
 ```
 
+
+*   **Desc**: Update customer
+*   **EndPoint**:  {domain-name}/customers/{customer-id}
+*   **Method**: PUT
+*   **Payload**:
+  ```json
+        {
+            "first_name": "Johv",
+            "last_name": "Doe",
+            "email" : "johndoe@doe.com",
+            "username": "Gondor_elf"
+
+        }
+  ```
+*   **Response**:
+  ```json
+        {
+           
+            "message": "customer updated"
+        }
+    
+```
+
 # Bank Account APIs
 
 *   **Desc**: Get all bank accounts for a given account API.
@@ -117,6 +140,7 @@ The following APIs can be used to implement a banking system on which admins can
         }
     
 ```
+
 
  
 
