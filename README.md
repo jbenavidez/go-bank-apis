@@ -70,3 +70,24 @@ The following APIs can be use to implement a banking system on which admins are 
       
     }
 
+*   **Response**:
+  ```json
+    {
+      "transaction_type": "withdraw || deposit",
+      "age": "number",
+      
+    }
+```
+*   **E.g Response**:
+  ```json
+{
+    "error": false,
+    "message": "Transaction completed",
+    "data": {
+        "id": 1,
+        "user_id": 1,
+        "account_type": "checking",
+        "amount": 7302
+    }
+}
+```
