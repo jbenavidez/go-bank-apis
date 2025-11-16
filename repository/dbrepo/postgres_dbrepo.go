@@ -167,3 +167,41 @@ func (m *PostgresDBRepo) InsertAccount(account models.Account) (int, error) {
 	return newID, nil
 
 }
+
+func (m *PostgresDBRepo) GetAccountsByUserId(userID int) ([]*models.Account, error) {
+
+	ctx, cancel := context.WithTimeout(context.Background(), dbTimeout)
+	defer cancel()
+	query := `
+		select
+			id, user_id, acc_type, created_at, updated_at, amount
+		from
+			accounts
+		where user_id = $1
+	`
+	rows, err := m.DB.QueryContext(ctx, query, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var accounts []*models.Account
+
+	for rows.Next() {
+		var account models.Account
+
+		err := rows.Scan(
+			&account.ID,
+			&account.UserID,
+			&account.AccountType,
+			&account.CreatedAt,
+			&account.UpdatedAt,
+			&account.Amount,
+		)
+		if err != nil {
+			return nil, err
+		}
+		accounts = append(accounts, &account)
+	}
+	return accounts, nil
+}

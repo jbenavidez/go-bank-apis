@@ -161,3 +161,21 @@ func (app *application) CreateAccount(w http.ResponseWriter, r *http.Request) {
 	}
 	_ = app.writeJSON(w, http.StatusAccepted, resp)
 }
+
+// GetUserAccounts gets all account for a given user
+func (app *application) GetUserAccounts(w http.ResponseWriter, r *http.Request) {
+
+	userID, err := strconv.Atoi(chi.URLParam(r, "id"))
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	userAccounts, err := app.DB.GetAccountsByUserId(userID)
+	if err != nil {
+		fmt.Println(err)
+		app.errorJSON(w, err)
+		return
+	}
+
+	_ = app.writeJSON(w, http.StatusOK, userAccounts)
+}
