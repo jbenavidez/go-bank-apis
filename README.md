@@ -62,7 +62,7 @@ The following APIs can be use to implement a banking system on which admins are 
 *   **title**: Perform transaction 
 *   **items**:
     *   EndPoint:  {domain-name}/customers<{id}/accounts{account-id}
-    *   Method : Pute.
+    *   Method : PUT
     *   
 *   **Payload**:
     *   **TDB**: 
