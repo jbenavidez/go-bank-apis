@@ -68,13 +68,16 @@ The following APIs can be use to implement a banking system on which admins are 
      <li>Method: Put</li>
        <li>Payload: 
         <br/>
-        ```
-        {
-            "transaction_type": "deposit | withdraw",
-            "amount": "number"
+        ````
+            ```
+            {
+            "transaction_type": "withdraw",
+                    "amount": 100
 
-        }
-        ```
+                }
+
+            ```
+        ````
        </li>
     </ul>
 </li>
