@@ -37,31 +37,52 @@ The following APIs can be use to implement a banking system on which admins are 
 </ul>
 
 # Bank Account APIs
-<ul>
-<li>Get all bank accounts for a given account:
-    <ul>
-    <li>Endpoint: {domain-name}/customers<{id}/accounts</li>
-     <li>Method: GET</li>
-    </ul>
-</li>
-<li>Create  Bank Account:
-    <ul>
-    <li>Endpoint: {domain-name}/customers<{id}/accounts</li>
-     <li>Method: Post</li>
-    </ul>
-</li>
+
+*   **Desc**: Get all bank accounts for a given account API.
+*   **EndPoint**: {domain-name}/customers/{id}/accounts
+*   **Method**: GET
+ *   **Response**:
+  ```json
+    {
+        "data": [{
+            "id": 1,
+            "user_id": 1,
+            "account_type": "checking",
+            "amount": 7302
+        }],
+
+    }
+    
+```
 
 
+*   **Desc**: Create  Bank Account API 
+*   **EndPoint**: {domain-name}/customers/{id}/accounts
+*   **Method**: POST
+*   **Payload**:
+  ```json
+    {
+        "account_type": "checking || saving",
+        "amount": 100
 
-</ul>
+    }
+  ```
+*   **Response**:
+  ```json
+        {
+           
+            "message": "Account created"
+        }
+    
+```
 
  
 
 # Transaction API
 
-*   **Desc**: Perform transaction 
+*   **Desc**: Perform transaction API
 *   **EndPoint**: {domain-name}/customers<{id}/accounts{account-id}
-*   **Method**: Put
+*   **Method**: PUT
 *   **Payload**:
   ```json
     {
@@ -69,7 +90,7 @@ The following APIs can be use to implement a banking system on which admins are 
       "age": "number",
       
     }
-
+```
 *   **Response**:
   ```json
     {
@@ -77,17 +98,4 @@ The following APIs can be use to implement a banking system on which admins are 
       "age": "number",
       
     }
-```
-*   **E.g Response**:
-  ```json
-{
-    "error": false,
-    "message": "Transaction completed",
-    "data": {
-        "id": 1,
-        "user_id": 1,
-        "account_type": "checking",
-        "amount": 7302
-    }
-}
-```
+
