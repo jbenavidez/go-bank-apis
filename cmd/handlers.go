@@ -189,3 +189,73 @@ func (app *application) GetAccountDetails(w http.ResponseWriter, r *http.Request
 	}
 	_ = app.writeJSON(w, http.StatusOK, acc)
 }
+
+// Transactions
+func (app *application) AccountTransactions(w http.ResponseWriter, r *http.Request) {
+
+	accID, err := strconv.Atoi(chi.URLParam(r, "accId"))
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	//
+	var transactionRequest TransactionRequest
+	err = app.readJSON(w, r, &transactionRequest)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	// validate transaction type
+	if strings.ToLower(transactionRequest.TransactionType) != "deposit" && strings.ToLower(transactionRequest.TransactionType) != "withdraw" {
+		err := errors.New("invalid transaction type")
+		app.errorJSON(w, err)
+		return
+	}
+	//Validate amount
+	if transactionRequest.Amount <= 0 {
+		err := errors.New("invalid transaction amount")
+		app.errorJSON(w, err)
+	}
+	// get Account
+	acc, err := app.DB.GetAccount(accID)
+
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	switch transactionRequest.TransactionType {
+	case "withdraw":
+		if acc.Amount < transactionRequest.Amount {
+			err := errors.New("insufficient funds")
+			app.errorJSON(w, err)
+			return
+		}
+		// apply transaction
+		acc.Amount -= transactionRequest.Amount
+		acc.UpdatedAt = time.Now()
+
+		err := app.DB.ApplyTransaction(*acc)
+		if err != nil {
+			app.errorJSON(w, err)
+			return
+		}
+
+	default:
+		// deposit
+		acc.Amount += transactionRequest.Amount
+		acc.UpdatedAt = time.Now()
+
+		err := app.DB.ApplyTransaction(*acc)
+		if err != nil {
+			app.errorJSON(w, err)
+			return
+		}
+
+	}
+	resp := JSONResponse{
+		Error:   false,
+		Message: "Transaction completed",
+		Data:    acc,
+	}
+	_ = app.writeJSON(w, http.StatusOK, resp)
+}

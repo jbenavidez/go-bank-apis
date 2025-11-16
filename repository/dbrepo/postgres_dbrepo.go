@@ -236,3 +236,26 @@ func (m *PostgresDBRepo) GetAccount(accID int) (*models.Account, error) {
 	return &account, nil
 
 }
+
+func (m *PostgresDBRepo) ApplyTransaction(acc models.Account) error {
+
+	ctx, cancel := context.WithTimeout(context.Background(), dbTimeout)
+	defer cancel()
+
+	stmt := `
+		update accounts set amount=$1, updated_at=$2
+		where id = $3
+	`
+	_, err := m.DB.ExecContext(ctx, stmt,
+		acc.Amount,
+		acc.UpdatedAt,
+		acc.ID,
+	)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	return nil
+
+}

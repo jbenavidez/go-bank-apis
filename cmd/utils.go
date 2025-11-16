@@ -13,6 +13,11 @@ type JSONResponse struct {
 	Data    any    `json:"data,omitempty"`
 }
 
+type TransactionRequest struct {
+	TransactionType string  `json:"transaction_type"`
+	Amount          float64 `json:"amount"`
+}
+
 func (app *application) writeJSON(w http.ResponseWriter, status int, data any, headers ...http.Header) error {
 
 	out, err := json.Marshal(data)
