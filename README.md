@@ -55,27 +55,15 @@ The following APIs can be use to implement a banking system on which admins are 
 
 </ul>
 
-# Transaction API
-<ul>
-<li>Perform Transaction:
  
-  <li>Get Bank Account:
-    <ul>
-    <li>Endpoint: {domain-name}/customers<{id}/accounts{account-id}</li>
-     <li>Method: Get</li>
-      <li>Payload: 
-    ````
-```
-{
-    "transaction_type": "withdraw",
-    "amount": 100
 
-}
-```
-````
-      </li>
-    </ul>
-</li>
-</li>
+# Transaction API
 
-</ul>
+*   **title**: Perform transaction 
+*   **items**:
+    *   EndPoint:  {domain-name}/customers<{id}/accounts{account-id}
+    *   Method : Pute.
+    *   
+*   **Payload**:
+    *   **TDB**: 
+
