@@ -36,21 +36,28 @@ The following APIs can be use to implement a banking system on which admins are 
 </li>
 </ul>
 
-# Account APIs
+# Bank Account APIs
 <ul>
-<li>Get all accounts for a given account:
+<li>Get all bank accounts for a given account:
     <ul>
     <li>Endpoint: {domain-name}/customers<{id}/accounts</li>
      <li>Method: GET</li>
-       <li>Response: List --> Account</li>
     </ul>
 </li>
-<li>Create Account:
+<li>Create  Bank Account:
     <ul>
     <li>Endpoint: {domain-name}/customers<{id}/accounts</li>
      <li>Method: Post</li>
     </ul>
 </li>
+<li>Get Bank Account:
+    <ul>
+    <li>Endpoint: {domain-name}/customers<{id}/accounts{account-id}</li>
+     <li>Method: Get</li>
+    </ul>
+</li>
+
+
 </ul>
 
 # Transaction API
