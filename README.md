@@ -60,8 +60,13 @@ The following APIs can be use to implement a banking system on which admins are 
 # Transaction API
 
 *   **Desc**: Perform transaction 
-*   **EndPoint**:{domain-name}/customers<{id}/accounts{account-id}
-*   **Method**:Put
+*   **EndPoint**: {domain-name}/customers<{id}/accounts{account-id}
+*   **Method**: Put
 *   **Payload**:
- 
+  ```json
+    {
+      "transaction_type": "withdraw || deposit",
+      "age": "number",
+      
+    }
 
