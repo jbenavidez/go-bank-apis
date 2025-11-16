@@ -50,12 +50,7 @@ The following APIs can be use to implement a banking system on which admins are 
      <li>Method: Post</li>
     </ul>
 </li>
-<li>Get Bank Account:
-    <ul>
-    <li>Endpoint: {domain-name}/customers<{id}/accounts{account-id}</li>
-     <li>Method: Get</li>
-    </ul>
-</li>
+
 
 
 </ul>
@@ -63,23 +58,21 @@ The following APIs can be use to implement a banking system on which admins are 
 # Transaction API
 <ul>
 <li>Perform Transaction:
+ 
+  <li>Get Bank Account:
     <ul>
-    <li>Endpoint: {domain-name}/customers/{id}/accounts/{account-id}</li>
-     <li>Method: Put</li>
-       <li>Payload: 
-        <br/>
-        ````
-            ```
-            {
-            "transaction_type": "withdraw",
-                    "amount": 100
-
-                }
-
-            ```
-        ````
-       </li>
+    <li>Endpoint: {domain-name}/customers<{id}/accounts{account-id}</li>
+     <li>Method: Get</li>
+      <li>Payload: 
+      ```
+      {
+        transaction_type: deposit |withdraw
+        amount: <-number->
+      }
+      ```
+      </li>
     </ul>
+</li>
 </li>
 
 </ul>
