@@ -20,6 +20,7 @@ func (a *application) routes() http.Handler {
 	mux.Post("/customers/{id}/accounts", a.CreateAccount)
 	mux.Get("/customers/{id}/accounts", a.GetUserAccounts)
 	mux.Get("/customers/{id}/accounts/{accId}", a.GetAccountDetails)
+	// Accounts transaction API
 	mux.Put("/customers/{id}/accounts/{accId}", a.AccountTransactions)
 	return mux
 }
