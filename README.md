@@ -29,7 +29,7 @@ The following APIs can be used to implement a banking system on which admins can
             "first_name": "Janet",
             "last_name": "Doe",
             "email": "janet@doe.com",
-            "username": "valinor_elf_hello"
+            "username": "valinor_elf"
         }
     ]
 }
@@ -37,29 +37,44 @@ The following APIs can be used to implement a banking system on which admins can
 ```
 
 *   **Desc**: Get customer API 
-*   **EndPoint**: int: {domain-name}/customers/{customer-id}
+*   **EndPoint**: {domain-name}/customers/{customer-id}
 *   **Method**: GET
  
 *   **Response**:
   ```json
     {
 
-    "data": [{
-            "id": 0,
-            "first_name": "John",
-            "last_name": "Doe",
-            "email": "johndoe@doe.com",
-            "username": "Gondor_elf"
-        },
-        {
+        "data": {
             "id": 0,
             "first_name": "Janet",
             "last_name": "Doe",
             "email": "janet@doe.com",
             "username": "valinor_elf_hello"
         }
-    ]
-}
+    }
+    
+```
+
+
+*   **Desc**: Create customer
+*   **EndPoint**: {domain-name}/customers
+*   **Method**: POST
+*   **Payload**:
+  ```json
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "johndoe@doe.com",
+        "username": "dev_elf"
+
+    }
+  ```
+*   **Response**:
+  ```json
+        {
+           
+            "message": "customer created"
+        }
     
 ```
 
@@ -98,7 +113,7 @@ The following APIs can be used to implement a banking system on which admins can
   ```json
         {
            
-            "message": "Account created"
+            "message": "Bank Account created"
         }
     
 ```

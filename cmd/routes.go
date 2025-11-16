@@ -12,7 +12,7 @@ func (a *application) routes() http.Handler {
 
 	mux.Get("/welcome", a.Welcome)
 	// Customers APIs
-	mux.Post("/create-customer", a.CreateUser)
+	mux.Post("/customers", a.CreateUser)
 	mux.Get("/customers", a.AllCustomers)
 	mux.Get("/customers/{id}", a.GetCustomer)
 	mux.Put("/customers/{id}", a.UpdateCustomer)
