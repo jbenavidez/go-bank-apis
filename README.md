@@ -61,3 +61,22 @@ The following APIs can be use to implement a banking system on which admins are 
 </ul>
 
 # Transaction API
+<ul>
+<li>Perform Transaction:
+    <ul>
+    <li>Endpoint: {domain-name}/customers/{id}/accounts/{account-id}</li>
+     <li>Method: Put</li>
+       <li>Payload: 
+        <br/>
+        ```
+        {
+            "transaction_type": "deposit | withdraw",
+            "amount": "number"
+
+        }
+        ```
+       </li>
+    </ul>
+</li>
+
+</ul>
