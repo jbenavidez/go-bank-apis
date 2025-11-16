@@ -205,3 +205,34 @@ func (m *PostgresDBRepo) GetAccountsByUserId(userID int) ([]*models.Account, err
 	}
 	return accounts, nil
 }
+
+func (m *PostgresDBRepo) GetAccount(accID int) (*models.Account, error) {
+
+	ctx, cancel := context.WithTimeout(context.Background(), dbTimeout)
+	defer cancel()
+	query := `
+		select
+			id, user_id, acc_type, created_at, updated_at, amount
+		from
+			accounts
+		where id = $1
+	`
+	row := m.DB.QueryRowContext(ctx, query, accID)
+	var account models.Account
+
+	err := row.Scan(
+		&account.ID,
+		&account.UserID,
+		&account.AccountType,
+		&account.CreatedAt,
+		&account.UpdatedAt,
+		&account.Amount,
+	)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
+	return &account, nil
+
+}

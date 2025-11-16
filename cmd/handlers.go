@@ -12,19 +12,12 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-type Payload struct {
-	Status  string `json:"status"`
-	Message string `json:"message"`
-	Version string `json:"version"`
-}
-
 func (app *application) Welcome(w http.ResponseWriter, r *http.Request) {
-	var payload = Payload{
-		Status:  "active",
-		Message: "welcome to my Bank APIs :)",
-		Version: "2.0",
+	resp := JSONResponse{
+		Error:   false,
+		Message: "Welcome",
 	}
-	_ = app.writeJSON(w, http.StatusOK, payload)
+	_ = app.writeJSON(w, http.StatusOK, resp)
 }
 
 // CreateUser create user record
@@ -178,4 +171,21 @@ func (app *application) GetUserAccounts(w http.ResponseWriter, r *http.Request) 
 	}
 
 	_ = app.writeJSON(w, http.StatusOK, userAccounts)
+}
+
+// GetAccountDetails get accounts details
+func (app *application) GetAccountDetails(w http.ResponseWriter, r *http.Request) {
+
+	accID, err := strconv.Atoi(chi.URLParam(r, "accId"))
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	acc, err := app.DB.GetAccount(accID)
+
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	_ = app.writeJSON(w, http.StatusOK, acc)
 }

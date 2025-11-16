@@ -13,4 +13,5 @@ type DatabaseRepo interface {
 	UpdateUser(userID int, userObj models.User) error
 	InsertAccount(account models.Account) (int, error)
 	GetAccountsByUserId(userID int) ([]*models.Account, error)
+	GetAccount(accID int) (*models.Account, error)
 }

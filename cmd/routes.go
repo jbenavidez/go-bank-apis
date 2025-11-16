@@ -19,5 +19,6 @@ func (a *application) routes() http.Handler {
 	// Accounts APIs
 	mux.Post("/customers/{id}/accounts", a.CreateAccount)
 	mux.Get("/customers/{id}/accounts", a.GetUserAccounts)
+	mux.Get("/customers/{id}/accounts/{accId}", a.GetAccountDetails)
 	return mux
 }
