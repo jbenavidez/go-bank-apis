@@ -19,7 +19,7 @@ $ docker-compose -f docker-compose-prod.yml build
 
 *   **Start project**: to start the project , run the following command: 
   ```bash
-$ go run cmd/*
+$ go run cmd/api/*
 ```
 
 # Customers APIs
