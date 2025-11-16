@@ -59,11 +59,9 @@ The following APIs can be use to implement a banking system on which admins are 
 
 # Transaction API
 
-*   **title**: Perform transaction 
-*   **items**:
-    *   EndPoint:  {domain-name}/customers<{id}/accounts{account-id}
-    *   Method : PUT
-    *   
+*   **Desc**: Perform transaction 
+*   **EndPoint**:{domain-name}/customers<{id}/accounts{account-id}
+*   **Method**:Put
 *   **Payload**:
-    *   **TDB**: 
+ 
 
