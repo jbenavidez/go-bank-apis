@@ -11,7 +11,7 @@ The following APIs can be used to implement a banking system on which admins can
 # How to run the project 
 *   **Start DB**: to start the DB, run the following docker command:
   ```bash
-$ docker-compose -f docker-compose-prod.yml build 
+$ docker-compose up
     
 ```
 
