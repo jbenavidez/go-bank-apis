@@ -64,12 +64,15 @@ The following APIs can be use to implement a banking system on which admins are 
     <li>Endpoint: {domain-name}/customers<{id}/accounts{account-id}</li>
      <li>Method: Get</li>
       <li>Payload: 
-      ```
-      {
-        transaction_type: deposit |withdraw
-        amount: <-number->
-      }
-      ```
+    ````
+```
+{
+    "transaction_type": "withdraw",
+    "amount": 100
+
+}
+```
+````
       </li>
     </ul>
 </li>
