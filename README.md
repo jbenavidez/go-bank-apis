@@ -1,6 +1,6 @@
 # Bank accounts management system APIs (wip):
 
-The following APIs can be use to implement a banking system on which admins are able to create customer, create accounts(checking|saving), and customer are able to deposit or withdraw X amount of money
+The following APIs can be used to implement a banking system on which admins can create customers, create accounts(checking|saving), and customers can deposit or withdraw X amount of money
 
 # Stack
 <ul>
@@ -9,32 +9,59 @@ The following APIs can be use to implement a banking system on which admins are 
 </ul>
 
 # Customers APIs
-<ul>
-<li>Get All customers:
-    <ul>
-    <li>Endpoint: {domain-name}/customers</li>
-     <li>Method: GET</li>
-    </ul>
-</li>
-<li>Get customer:
-    <ul>
-    <li>Endpoint: {domain-name}/customers/{customer-id}</li>
-     <li>Method: GET</li>
-    </ul>
-</li>
-<li>Create customer:
-    <ul>
-    <li>Endpoint: {domain-name}/customers</li>
-     <li>Method: Post</li>
-    </ul>
-</li>
-<li>Update customer:
-    <ul>
-    <li>Endpoint: {domain-name}/customers/{customer-id}</li>
-     <li>Method: PUT</li>
-     </ul>
-</li>
-</ul>
+*   **Desc**: Get All customers API 
+*   **EndPoint**: int: {domain-name}/customers
+*   **Method**: GET
+ 
+*   **Response**:
+  ```json
+    {
+
+    "data": [{
+            "id": 0,
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "johndoe@doe.com",
+            "username": "Gondor_elf"
+        },
+        {
+            "id": 0,
+            "first_name": "Janet",
+            "last_name": "Doe",
+            "email": "janet@doe.com",
+            "username": "valinor_elf_hello"
+        }
+    ]
+}
+    
+```
+
+*   **Desc**: Get customer API 
+*   **EndPoint**: int: {domain-name}/customers/{customer-id}
+*   **Method**: GET
+ 
+*   **Response**:
+  ```json
+    {
+
+    "data": [{
+            "id": 0,
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "johndoe@doe.com",
+            "username": "Gondor_elf"
+        },
+        {
+            "id": 0,
+            "first_name": "Janet",
+            "last_name": "Doe",
+            "email": "janet@doe.com",
+            "username": "valinor_elf_hello"
+        }
+    ]
+}
+    
+```
 
 # Bank Account APIs
 
